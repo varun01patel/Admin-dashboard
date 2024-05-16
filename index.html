@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+  </head>
+  <style>
+    .toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column-reverse; /* To append new toasts at the bottom */
+}
+
+.toast {
+  background-color: rgba(220, 53, 69, 0.8); /* Adjusted to red color for danger */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInOut 0.5s ease forwards;
+  margin-bottom: 10px;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+  </style>
+  <body>
+    <div class="grid grid-cols-12">
+      <div class="col-span-2 p-4 bg-[rgb(251,252,255)] h-[100vh] fixed w-[20%]">
+        <h1 class="text-gray-950 text-2xl font-bold ml-2">ADMIN PANEL</h1>
+
+        <div class="sidebar-menu my-8 ml-2">
+          <h4 class="text-gray-500 font-semibold">Menu</h4>
+          <ul class="ml-3">
+            <li
+              class="h-14 pl-3 flex justify-start items-center rounded-xl text-sm font-semibold text-gray-500 hover:bg-blue-50 hover:text-red-500"
+            >
+              <a href="#">
+                <i class="fas fa-briefcase"></i>
+                <span class="ml-3">Dashboard</span>
+              </a>
+            </li>
+            <li
+              class="h-10 pl-3 flex justify-start items-center rounded-xl text-sm font-semibold text-gray-500 hover:bg-blue-50 hover:text-red-500"
+            >
+              <a href="#">
+                <i class="fas fa-tachometer-alt"></i>
+                <span class="ml-3">Job Listing</span>
+              </a>
+            </li>
+            <li
+              class="h-14 p-2 pl-3 flex justify-start items-center rounded-xl text-sm font-semibold text-gray-500 hover:bg-blue-50 hover:text-red-500"
+            >
+              <a href="#">
+                <i class="fas fa-file-alt"></i>
+                <span class="ml-3">Shortlisted Resume</span>
+              </a>
+            </li>
+            <li
+              class="h-14 p-2 pl-3 flex justify-start items-center rounded-xl text-sm font-semibold text-gray-500 hover:bg-blue-50 hover:text-red-500"
+            >
+              <a href="#">
+                <i class="fas fa-building"></i>
+                <span class="ml-3">Company Profile</span>
+              </a>
+            </li>
+            <li
+              class="h-14 p-2 pl-3 flex justify-start items-center rounded-xl text-sm font-semibold text-gray-500 hover:bg-blue-50 hover:text-red-500"
+            >
+              <a href="#">
+                <i class="fas fa-file"></i>
+                <span class="ml-3">Document</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-menu my-8">
+          <h4 class="text-gray-500 font-semibold">Account</h4>
+          <ul class="ml-3">
+            <li
+              class="h-14 p-2 pl-3 flex justify-start items-center rounded-xl text-sm font-semibold text-gray-500 hover:bg-blue-50 hover:text-red-500"
+            >
+              <a href="#">
+                <i class="fas fa-cog"></i>
+                <span class="ml-3">Settings</span>
+              </a>
+            </li>
+            <li
+              class="h-14 p-2 pl-3 flex justify-start items-center rounded-xl text-sm font-semibold text-gray-500 hover:bg-blue-50 hover:text-red-500"
+            >
+              <a href="#">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="ml-3">Sign Out</span>
+              </a>
+            </li>
+            <li
+              class="h-14 p-2 pl-3 flex justify-start items-center rounded-xl text-sm font-semibold text-gray-500 hover:bg-blue-50 hover:text-red-500"
+            >
+              <a href="#">
+                <i class="fas fa-question-circle"></i>
+                <span class="ml-3">Help Center</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="flex justify-start items-center absolute bottom-8">
+          <img
+            class="w-12 h-10 rounded-full"
+            src="https://i.pngimg.me/thumb/f/720/m2i8d3i8N4d3N4K9.jpg"
+            alt=""
+          />
+          <div class="logo"></div>
+          <div class="description ml-2">
+            <div class="name font-bold text-sm">Deepender Singh</div>
+            <div class="email text-sm">varun01patel@gmail.com</div>
+          </div>
+          <span class="ml-2">&gt;</span>
+        </div>
+      </div>
+      <div class="col-span-1 mb-30 absolute right-0 h-[100vh] w-[80%]">
+        <div
+          class="navbar bg-gray-[10] shadow-sm h-16 flex p-3 items-center justify-between"
+        >
+          <div class="left-container">
+            <div class="flex justify-start items-center">
+              <img
+                class="w-12 h-10 rounded-full"
+                src="https://i.pngimg.me/thumb/f/720/m2i8d3i8N4d3N4K9.jpg"
+                alt=""
+              />
+              <div class="logo"></div>
+              <div class="description ml-2">
+                <div class="name text-sm">Deepender Singh</div>
+                <div class="email text-sm font-bold">
+                  varun01patel@gmail.com
+                  <span class="ml-2">
+                    <i class="fa-solid fa-angle-down"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="right-container flex items-center gap-6">
+            <div class="bell-icon text-gray-500 text-lg">
+              <span>
+                <i class="fa-regular fa-bell"></i>
+              </span>
+            </div>
+            <button class="bg-blue-500 p-3 px-5 rounded-xl text-white">
+              <span>
+                <i class="fa-solid fa-plus"></i>
+              </span>
+              Post a Job
+            </button>
+          </div>
+        </div>
+        <div class="main-description py-4">
+          <h4 class="font-bold text-sm">Settings</h4>
+          <p class="text-gray-500 text-sm">
+            All About Personal Information, Password etc.
+          </p>
+        </div>
+        <div class="sub-container w-full flex mt-2">
+          <div class="left-content w-[25%]">
+            <ul class="">
+              <li
+                class="p-3 flex items-center gap-4 text-sm rounded-lg bg-blue-700 text-white mx-2 mr-4 my-1 cursor-pointer"
+              >
+                <span class="">
+                  <i class="fa-regular fa-user"></i>
+                </span>
+                Personal Information
+                <span class="relative -right-2">
+                  <i class="fa-solid fa-angle-right"></i>
+                </span>
+              </li>
+              <li
+                class="p-3 flex items-center gap-4 text-lg rounded-lg text-sm mx-2 mr-4 my-1 cursor-pointer"
+              >
+                <span class="">
+                  <i class="fa-solid fa-lock"></i>
+                </span>
+                Change Password
+                <span class="relative -right-[30px]">
+                  <i class="fa-solid fa-angle-right"></i>
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div class="right-content w-[75%] p-2 mr-10">
+            <div class="banner w-full h-40 rounded-lg">
+              <img
+                class="w-full h-full rounded-lg object-cover overflow-hidden"
+                src="https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630"
+                alt=""
+              />
+              <img
+                class="w-14 h-14 rounded-full relative -top-8 -right-2"
+                src="https://i.pngimg.me/thumb/f/720/m2i8d3i8N4d3N4K9.jpg"
+                alt=""
+              />
+            </div>
+
+            <div class="personal-info-form">
+              <form action="#" id="personal-info-form">
+                <div class="container mx-auto mt-5">
+                  <h2 class="text-xl font-semibold mt-10 mb-5">
+                    Personal Information
+                  </h2>
+                  <div class="grid grid-cols-2 gap-4">
+                    <div class="col-span-1 mb-3">
+                      <div class="flex flex-col justify-start mr-3">
+                        <label htmlFor="firstName" class="mb-3 font-semibold">
+                          First Name:
+                        </label>
+                        <div class="flex relative w-[1/2] items-center">
+                          <span class="absolute left-4">
+                            <i class="fas fa-user"></i>
+                          </span>
+                          <input
+                            type="text"
+                            id="firstName"
+                            placeholder="First Name"
+                            class="pl-12 rounded-lg px-3 py-2 w-full outline-none bg-[rgb(248,249,250)] text-black"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-span-1">
+                      <div class="flex flex-col justify-start mr-3">
+                        <label htmlFor="lastName" class="mb-3 font-semibold">
+                          Last Name:
+                        </label>
+                        <div class="flex relative w-[1/2] items-center">
+                          <span class="absolute left-4">
+                            <i class="fas fa-user"></i>
+                          </span>
+                          <input
+                            type="text"
+                            id="lastName"
+                            placeholder="Last Name"
+                            class="pl-12 rounded-lg px-3 py-2 w-full outline-none bg-[rgb(248,249,250)] text-black"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="grid grid-cols-2 gap-4">
+                    <div class="col-span-1">
+                      <div class="flex flex-col justify-start mr-3">
+                        <label htmlFor="email" class="mb-3 font-semibold">
+                          Email:
+                        </label>
+                        <div class="flex relative w-[1/2] items-center">
+                          <span class="absolute left-4">
+                            <i class="fas fa-user"></i>
+                          </span>
+                          <input
+                            type="email"
+                            id="email"
+                            placeholder="Email"
+                            class="pl-12 rounded-lg px-3 py-2 w-full outline-none bg-[rgb(248,249,250)] text-black"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-span-1 mb-3">
+                      <div class="flex flex-col justify-start mr-3">
+                        <label
+                          htmlFor="mobileNumber"
+                          class="mb-3 font-semibold"
+                        >
+                          Mobile Number:
+                        </label>
+                        <div class="flex relative w-[1/2] items-center">
+                          <span class="absolute left-4">
+                            <i class="fas fa-user"></i>
+                          </span>
+                          <input
+                            type="number"
+                            id="mobileNumber"
+                            placeholder="Mobile Number "
+                            class="pl-12 rounded-lg px-3 py-2 w-full outline-none bg-[rgb(248,249,250)] text-black"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="grid grid-cols-2 gap-4">
+                    <div class="col-span-2 mb-3">
+                      <div class="flex flex-col justify-start mr-3">
+                        <label htmlFor="address" class="mb-3 font-semibold">
+                          Address:
+                        </label>
+                        <div class="flex relative items-center">
+                          <span class="absolute left-4">
+                            <i class="fas fa-user"></i>
+                          </span>
+                          <input
+                            type="text"
+                            id="address"
+                            placeholder="Address"
+                            class="pl-12 rounded-lg px-3 py-2 w-full outline-none bg-[rgb(248,249,250)] text-black"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="grid grid-cols-2 gap-4">
+                    <div class="col-span-1 mb-3">
+                      <div class="flex flex-col justify-start mr-3">
+                        <label htmlFor="city" class="mb-3 font-semibold">
+                          City
+                        </label>
+                        <div class="flex relative w-[1/2] items-center">
+                          <span class="absolute left-4">
+                            <i class="fa-regular fa-building"></i>
+                          </span>
+                          <input
+                            type="text"
+                            id="city"
+                            placeholder="Delhi"
+                            class="pl-12 rounded-lg px-3 py-2 w-full outline-none bg-[rgb(248,249,250)] text-black"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-span-1 mb-3">
+                      <div class="flex flex-col justify-start mr-3">
+                        <label htmlFor="state" class="mb-3 font-semibold">
+                          State:
+                        </label>
+                        <div class="flex relative w-[1/2] items-center">
+                          <span class="absolute left-4">
+                            <i class="fa-regular fa-location-dot"></i>
+                          </span>
+                          <input
+                            type="text"
+                            id="state"
+                            placeholder="Uttar Pradesh"
+                            class="pl-12 rounded-lg px-3 py-2 w-full outline-none bg-[rgb(248,249,250)] text-black"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="grid grid-cols-2 gap-4">
+                    <div class="col-span-1 mb-3">
+                      <div class="flex flex-col justify-start mr-3">
+                        <label htmlFor="country" class="mb-3 font-semibold">
+                          Country
+                        </label>
+                        <div class="flex relative w-[1/2] items-center">
+                          <span class="absolute left-4">
+                            <i class="fa-regular fa-location-dot"></i>
+                          </span>
+                          <input
+                            type="text"
+                            id="country"
+                            placeholder="India"
+                            class="pl-12 rounded-lg px-3 py-2 w-full outline-none bg-[rgb(248,249,250)] text-black"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-span-1 mb-3">
+                      <div class="flex flex-col justify-start mr-3">
+                        <label htmlFor="date" class="mb-3 font-semibold">
+                          Date
+                        </label>
+                        <div class="flex relative w-[1/2] items-center">
+                          <span class="absolute left-4">
+                            <i class="fa-regular fa-calendar-days"></i>
+                          </span>
+                          <input
+                            type="date"
+                            id="date"
+                            placeholder="Date"
+                            class="pl-12 rounded-lg px-3 py-2 w-full outline-none bg-[rgb(248,249,250)] text-black"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="grid grid-cols-2 gap-4">
+                    <div class="col-span-1 mb-3">
+                      <div class="flex flex-col justify-start mr-3">
+                        <label htmlFor="gender" class="mb-3 font-semibold">
+                          Gender
+                        </label>
+                        <div class="relative">
+                          <select
+                            id="gender"
+                            class="pl-10 border rounded px-3 py-2 w-full"
+                          >
+                            <option value="" disabled selected hidden>
+                              Select Gender
+                            </option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                          </select>
+                          <span
+                            class="absolute inset-y-0 left-0 flex items-center pl-3"
+                          >
+                            <i class="fas fa-chevron-down"></i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-span-1 mb-3">
+                      <div class="flex flex-col justify-start mr-3">
+                        <label htmlFor="zipCode" class="mb-3 font-semibold">
+                          Zip Code
+                        </label>
+                        <div class="flex relative w-[1/2] items-center">
+                          <span class="absolute left-4">
+                            <i class="fas fa-user"></i>
+                          </span>
+                          <input
+                            type="text"
+                            id="zipCode"
+                            placeholder="Zip code"
+                            class="pl-12 rounded-lg px-3 py-2 w-full outline-none bg-[rgb(248,249,250)] text-black"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="flex justify-end mt-5">
+                    <button id="discard-btn"
+                      class="bg-[rgb(248,249,250)] hover:bg-green-600 text-black font-semibold px-4 py-2 rounded mr-2 shadow-lg"
+                    >
+                      Discard
+                    </button>
+                    <button
+                      type="submit"
+                      class="bg-blue-500 hover:bg-red-600 text-white font-semibold px-4 py-2 rounded"
+                    >
+                      Save Changes
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="toast-container" id="toast-container"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
